@@ -1,10 +1,12 @@
-#Audio Visualizer
+Audio Visualizer
 
 Original [link](https://codepen.io/nfj525/pen/rVBaab)
 
-###HTML Code
+HTML Code
 [Link](https://vexionproject.github.io/Visualizer/HTML.html)
-###CSS Code
+
+CSS Code
 [Link](https://vexionproject.github.io/Visualizer/CSS.html)
-###JS Code
+
+JS Code
 [Link](https://vexionproject.github.io/Visualizer/JS.html)

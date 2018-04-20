@@ -7,5 +7,6 @@ HTML Code
 
 CSS Code
 [Link](https://vexionproject.github.io/Visualizer/CSS.html)
-JS Code\n
+
+JS Code
 [Link](https://vexionproject.github.io/Visualizer/JS.html)

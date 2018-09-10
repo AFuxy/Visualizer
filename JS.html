@@ -1,5 +1,27 @@
 <title>JS CODE</title>
 <xmp>
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}  
+  
+  
 window.onload = function() {
   
   var file = document.getElementById("thefile");
@@ -13,53 +35,38 @@ window.onload = function() {
     var context = new AudioContext();
     var src = context.createMediaElementSource(audio);
     var analyser = context.createAnalyser();
-
     var canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var ctx = canvas.getContext("2d");
-
     src.connect(analyser);
     analyser.connect(context.destination);
-
     analyser.fftSize = 256;
-
     var bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
-
     var dataArray = new Uint8Array(bufferLength);
-
     var WIDTH = canvas.width;
     var HEIGHT = canvas.height;
-
     var barWidth = (WIDTH / bufferLength) * 2.5;
     var barHeight;
     var x = 0;
-
     function renderFrame() {
       requestAnimationFrame(renderFrame);
-
       x = 0;
-
       analyser.getByteFrequencyData(dataArray);
-
       ctx.fillStyle = "#000";
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
       for (var i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i];
+        barHeight = (dataArray[i] * 2);
         
         var r = barHeight + (25 * (i/bufferLength));
         var g = 250 * (i/bufferLength);
         var b = 50;
-
         ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
         ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-
         x += barWidth + 1;
       }
     }
-
     audio.play();
     renderFrame();
   };
